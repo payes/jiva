@@ -272,6 +272,16 @@ func (rf *Factory) Create(address string) (types.Backend, error) {
 	if err != nil {
 		return nil, err
 	}
+	con := conn.(*net.TCPConn)
+	err = con.SetKeepAlive(true)
+	if err != nil {
+		return nil, err
+	}
+
+	err = con.SetKeepAlivePeriod(1 * time.Second)
+	if err != nil {
+		return nil, err
+	}
 
 	remote := rpc.NewClient(conn, r.closeChan)
 	r.IOs = remote
