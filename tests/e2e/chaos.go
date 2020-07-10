@@ -26,7 +26,7 @@ func restartOneReplicaTest() {
 		startContainer(config.Replicas[striped(replicas[0].Address)])
 		config.verifyRWReplicaCount(3)
 		time.Sleep(30 * time.Second)
-		if time.Since(startTime) > time.Minute*20 {
+		if time.Since(startTime) > time.Minute*chaosTime {
 			break
 		}
 		iteration++
@@ -61,7 +61,7 @@ func restartTwoReplicasTest() {
 		startContainer(config.Replicas[striped(replicas[1].Address)])
 		config.verifyRWReplicaCount(3)
 		time.Sleep(30 * time.Second)
-		if time.Since(startTime) > time.Minute*20 {
+		if time.Since(startTime) > time.Minute*chaosTime {
 			break
 		}
 		iteration++
@@ -98,7 +98,7 @@ func restartThreeReplicasTest() {
 		startContainer(config.Replicas[striped(replicas[2].Address)])
 		config.verifyRWReplicaCount(3)
 		time.Sleep(30 * time.Second)
-		if time.Since(startTime) > time.Minute*20 {
+		if time.Since(startTime) > time.Minute*chaosTime {
 			break
 		}
 		iteration++
@@ -126,7 +126,7 @@ func restartControllerTest() {
 		startContainer(config.Controller[striped(config.ControllerIP)])
 		config.verifyRWReplicaCount(3)
 		time.Sleep(30 * time.Second)
-		if time.Since(startTime) > time.Minute*20 {
+		if time.Since(startTime) > time.Minute*chaosTime {
 			break
 		}
 		iteration++
